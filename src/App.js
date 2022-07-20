@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import {AB_GET_LIST} from './config/ajax-path'
 
 //componentDidMount
 //componentDidUpdated
@@ -9,7 +10,7 @@ import React, { useEffect } from 'react'
 function App() {
 
   const getData = async()=>{
-    const r = await fetch('http://localhost:3600/address-book/api');
+    const r = await fetch(AB_GET_LIST);
     const obj = await r.json();
     console.log(obj);
   }
