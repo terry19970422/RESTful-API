@@ -21,6 +21,33 @@ export default function App() {
 
     return (
         <div>
+            {data && data.totalPages ? (
+                <nav aria-label="Page navigation example">
+                    <ul className="pagination">
+                        <li className="page-item">
+                            <a className="page-link" href="#/">
+                                Previous
+                            </a>
+                        </li>
+                        {Array(10)
+                            .fill(1)
+                            .map((v, i) => (
+                                <li className="page-item" key={'pagi' + i}>
+                                    <a className="page-link" href="#/">
+                                        {i + 1}
+                                    </a>
+                                </li>
+                            ))}
+
+                        <li className="page-item">
+                            <a className="page-link" href="#/">
+                                Next
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            ) : null}
+
             {console.log({ data })}
             <table className="table table-striped">
                 <thead>
@@ -32,12 +59,16 @@ export default function App() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
+                    {data && data.rows
+                        ? data.rows.map((row) => (
+                              <tr key={"mm" + row.sid}>
+                                  <th scope="row">{row.sid}</th>
+                                  <td>{row.name}</td>
+                                  <td>{row.email}</td>
+                                  <td>{row.mobile}</td>
+                              </tr>
+                          ))
+                        : null}
                 </tbody>
             </table>
         </div>
